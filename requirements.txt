@@ -21,6 +21,7 @@ numpy==2.0.1
 packaging==24.1
 pandas==2.2.2
 parso==0.8.4
+patsy==0.5.6
 pillow==10.4.0
 platformdirs==4.2.2
 prompt_toolkit==3.0.47
@@ -34,10 +35,13 @@ pywin32==306
 pyzmq==26.1.0
 scikit-learn==1.5.1
 scipy==1.14.0
+setuptools==72.2.0
 six==1.16.0
 stack-data==0.6.3
+statsmodels==0.14.2
 threadpoolctl==3.5.0
 tornado==6.4.1
 traitlets==5.14.3
+tsfel==0.1.7
 tzdata==2024.1
 wcwidth==0.2.13
