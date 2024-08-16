@@ -40,8 +40,7 @@ def rmse(y_hat: pd.Series, y: pd.Series) -> float:
     """
     Function to calculate the root-mean-squared-error(rmse)
     """
-    assert y_hat.size == y.size
-    assert y.size > 0
+    assert y_hat.size == y.size and y.size > 0
     return np.sqrt(np.sum((y - y_hat) ** 2) / y.size)
 
 
@@ -49,6 +48,5 @@ def mae(y_hat: pd.Series, y: pd.Series) -> float:
     """
     Function to calculate the mean-absolute-error(mae)
     """
-    assert y_hat.size == y.size
-    assert y.size > 0
+    assert y_hat.size == y.size and y.size > 0
     return np.sum(np.abs(y - y_hat)) / y.size
