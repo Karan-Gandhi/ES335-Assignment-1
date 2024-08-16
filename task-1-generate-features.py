@@ -27,7 +27,7 @@ for activity in activities:
             for feature in cfg[domain]:
                 cfg[domain][feature]['use'] = 'yes' # use all features, even ones disabled by default
 
-        features = tsfel.time_series_features_extractor(cfg, df, fs=50)
+        features = tsfel.time_series_features_extractor(cfg, df, fs=50, window_size=50) # sampling rate 50 Hz in windows of 1 second
         
         # Construct the output filename
         subject_id = file.split('.')[0]  # Assuming file naming convention allows this
