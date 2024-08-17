@@ -22,7 +22,7 @@ for activity in activities:
             for feature in cfg[domain]:
                 cfg[domain][feature]['use'] = 'yes' # use all features, even ones disabled by default
 
-        features = tsfel.time_series_features_extractor(cfg, df, fs=50, window_size=50) # sampling rate 50 Hz in windows of 1 second
+        features = tsfel.time_series_features_extractor(cfg, df, fs=50) # sampling rate 50 Hz in windows of 1 second
         subject_id = file.split('.')[0]
         output_file = os.path.join(output_activity_dir, f'{subject_id}.csv')
         features.to_csv(output_file, index=False)
