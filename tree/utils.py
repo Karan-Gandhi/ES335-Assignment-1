@@ -17,17 +17,16 @@ def check_ifreal(y: pd.Series) -> bool:
     Function to check if the given series has real or discrete values
     Will return True if the given series is real
     """
-
-    return not (y.dtype == 'int' or y.dtype == 'int64' or y.dtype == 'int32')
+    return np.sum(i in str(y.size) for i in ['int']) > 0
 
 
 def entropy(Y: pd.Series) -> float:
     """
     Function to calculate the entropy
     """
-
     p = Y.value_counts(normalize=True)
-    return np.sum(-p * np.log2(p))
+    S = -np.sum(p * np.log2(p))
+    return S
 
 
 def gini_index(Y: pd.Series) -> float:
@@ -37,6 +36,11 @@ def gini_index(Y: pd.Series) -> float:
     p = Y.value_counts(normalize=True)
     return 1 - np.sum(p * p)
 
+def mse(Y: pd.Series) -> float:
+    """
+    Function to calculate mse of data
+    """
+    return np.mean((Y - np.mean(Y)) ** 2)
 
 def mse(Y: pd.Series):
     mu = Y.mean()
@@ -98,11 +102,7 @@ def split_data(X: pd.DataFrame, y: pd.Series, attribute, value):
     assert y.size == X.shape[0]
     X_left, y_left, X_right, y_right = None, None, None, None
 
-    if check_ifreal(X[attribute]):
-        X_left, y_left = X[X[attribute] <= value], y[X[attribute] <= value]
-        X_right, y_right = X[X[attribute] > value], y[X[attribute] > value]
-    else:
-        X_left, y_left = X[X[attribute] == value], y[X[attribute] == value]
-        X_right, y_right = X[X[attribute] != value], y[X[attribute] != value]
+    X_left, y_left = X[X[attribute] <= value], y[X[attribute] <= value]
+    X_right, y_right = X[X[attribute] > value], y[X[attribute] > value]
 
     return X_left, y_left, X_right, y_right
