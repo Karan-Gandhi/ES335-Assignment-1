@@ -15,6 +15,7 @@ def one_hot_encoding(X: pd.DataFrame) -> pd.DataFrame:
 def check_ifreal(y: pd.Series) -> bool:
     """
     Function to check if the given series has real or discrete values
+    Will return True if the given series is real
     """
 
     return not (y.dtype == 'int' or y.dtype == 'int64' or y.dtype == 'int32')
