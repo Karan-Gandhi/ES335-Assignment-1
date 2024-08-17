@@ -4,7 +4,9 @@ There is no restriction on following the below template, these fucntions are her
 """
 
 import pandas as pd
+import numpy as np
 
+# TODO: Complete this implementation later
 def one_hot_encoding(X: pd.DataFrame) -> pd.DataFrame:
     """
     Function to perform one hot encoding on the input data
@@ -17,7 +19,7 @@ def check_ifreal(y: pd.Series) -> bool:
     Function to check if the given series has real or discrete values
     """
 
-    pass
+    return y.dtype == 'int' or y.dtype == 'int64' or y.dtype == 'int32'
 
 
 def entropy(Y: pd.Series) -> float:
@@ -25,7 +27,8 @@ def entropy(Y: pd.Series) -> float:
     Function to calculate the entropy
     """
 
-    pass
+    p = Y.value_counts(normalize=True)
+    return np.sum(-p * np.log2(p))
 
 
 def gini_index(Y: pd.Series) -> float:
@@ -33,7 +36,8 @@ def gini_index(Y: pd.Series) -> float:
     Function to calculate the gini index
     """
 
-    pass
+    p = Y.value_counts(normalize=True)
+    return 1 - np.sum(p * p)
 
 
 def information_gain(Y: pd.Series, attr: pd.Series, criterion: str) -> float:
@@ -41,7 +45,14 @@ def information_gain(Y: pd.Series, attr: pd.Series, criterion: str) -> float:
     Function to calculate the information gain using criterion (entropy, gini index or MSE)
     """
 
-    pass
+    if criterion == 'entropy':
+        pass
+    elif criterion == 'gini':
+        pass
+    elif criterion == 'mse':
+        pass
+    else:
+        raise NotImplementedError("Criterion must be 'entropy', 'gini', or 'mse'")
 
 
 def opt_split_attribute(X: pd.DataFrame, y: pd.Series, criterion, features: pd.Series):
