@@ -38,19 +38,26 @@ def gini_index(Y: pd.Series) -> float:
     return 1 - np.sum(p * p)
 
 
+def mse(Y: pd.Series):
+    mu = Y.mean()
+    return np.sum((Y - mu) ** 2)
+
+
 def information_gain(Y: pd.Series, attr: pd.Series, criterion: str) -> float:
     """
     Function to calculate the information gain using criterion (entropy, gini index or MSE)
     """
-
+    fn = None
     if criterion == 'entropy':
-        pass
+        fn = entropy
     elif criterion == 'gini':
-        pass
+        fn = gini_index
     elif criterion == 'mse':
-        pass
+        fn = mse
     else:
         raise NotImplementedError("Criterion must be 'entropy', 'gini', or 'mse'")
+    
+    
 
 def opt_split_attribute(X: pd.DataFrame, y: pd.Series, criterion, features: pd.Series):
     """
