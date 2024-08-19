@@ -108,7 +108,7 @@ class DecisionTree:
         """
         Function to train and construct the decision tree
         """
-
+        X = one_hot_encoding(X) # handle discrete input 
         # If you wish your code can have cases for different types of input and output data (discrete, real)
         # Use the functions from utils.py to find the optimal attribute to split upon and then construct the tree accordingly.
         # You may(according to your implemetation) need to call functions recursively to construct the tree. 
