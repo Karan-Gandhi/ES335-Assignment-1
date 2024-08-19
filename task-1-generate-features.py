@@ -3,8 +3,8 @@ import pandas as pd
 import tsfel
 from pathlib import Path
 
-base_dir = 'Combined/Test'
-output_base_dir = 'TSFEL_3axes_allfeatures/Test'
+base_dir = 'Datasets/Combined/Train'
+output_base_dir = 'Datasets/TSFEL_3axes_allfeatures/Train'
 
 activities = ['LAYING', 'SITTING', 'STANDING', 'WALKING', 'WALKING_UPSTAIRS', 'WALKING_DOWNSTAIRS']
 
@@ -15,7 +15,7 @@ for activity in activities:
     subject_files = [f for f in os.listdir(activity_dir) if f.endswith('.csv')]
     for file in subject_files:
         file_path = os.path.join(activity_dir, file)
-        df = pd.read_csv(file_path).head(500)
+        df = pd.read_csv(file_path).iloc[100:600, :]
         cfg = tsfel.get_features_by_domain() 
         # print(cfg)
         for domain in cfg:
