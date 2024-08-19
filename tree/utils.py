@@ -42,14 +42,22 @@ def mse(Y: pd.Series) -> float:
     """
     return np.mean((Y - np.mean(Y)) ** 2)
 
-def mse(Y: pd.Series):
-    mu = Y.mean()
-    return np.sum((Y - mu) ** 2)
-
+def get_impurity_function(criterion):
+    fn = None
+    if criterion == 'entropy':
+        fn = entropy
+    elif criterion == 'gini':
+        fn = gini_index
+    elif criterion == 'mse':
+        fn = mse
+    else:
+        raise NotImplementedError("Criterion must be 'entropy', 'gini', or 'mse'")
+    return fn
 
 def information_gain(Y: pd.Series, attr: pd.Series, criterion: str) -> float:
     """
     Function to calculate the information gain using criterion (entropy, gini index or MSE)
+    This will return the optimal split and the information gain for the given attr
     """
     fn = None
     if criterion == 'entropy':
@@ -61,7 +69,25 @@ def information_gain(Y: pd.Series, attr: pd.Series, criterion: str) -> float:
     else:
         raise NotImplementedError("Criterion must be 'entropy', 'gini', or 'mse'")
     
+    prev_info = fn(Y)
+    attr_values = attr.unique().sort()
+    best_gain = 0
+    opt_split = None
     
+    for value in attr_values:
+        left = Y[attr <= value]
+        right = Y[attr > value]
+        current_info = fn(left) * len(left) / len(Y) + fn(right) * len(right) / len(Y)
+        info_gain = prev_info - current_info
+        
+        if info_gain > best_gain:
+            best_gain = info_gain
+            opt_split = value
+    
+    assert opt_split is not None
+    
+    return best_gain, opt_split
+
 
 def opt_split_attribute(X: pd.DataFrame, y: pd.Series, criterion, features: pd.Series):
     """
