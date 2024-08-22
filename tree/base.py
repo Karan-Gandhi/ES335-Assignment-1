@@ -26,7 +26,7 @@ class Node:
     split_feature: str
     output_type: Literal['real', 'discrete']
     
-    def __init__(self, criterion, depth, output_type):
+    def __init__(self, criterion, depth):
         self.children = []
         self.criterion = criterion
         self.depth = depth
@@ -34,12 +34,12 @@ class Node:
         self.samples_y = None
         self.split_feature = None
         self.split_value = None
-        self.output_type = output_type
         
     def split(self, max_depth, eps):
         assert (self.samples_x is not None) and (self.samples_y is not None)
 
         if self.depth == max_depth:
+            # print(self.samples_x)
             return
         
         if get_impurity_function(self.criterion)(self.samples_y) <= eps:
@@ -48,7 +48,7 @@ class Node:
         # if we have pure data then stop splitting
         # else split into two children based on the best information gain
 
-        best_gain = 0
+        best_gain = -np.inf
         opt_split = None
         opt_feature = None
 
@@ -59,6 +59,9 @@ class Node:
                 opt_split = current_opt_split
                 best_gain = info_gain
                 opt_feature = feature
+        
+        if best_gain == 0:
+            return
                 
         assert (opt_split is not None) and (opt_feature is not None)
         
@@ -66,10 +69,10 @@ class Node:
         self.split_feature = opt_feature
         self.split_value = opt_split
         
-        left_child_mask = self.samples_x[self.samples_x[opt_feature] <= opt_split]
-        right_child_mask = self.samples_x[self.samples_x[opt_feature] > opt_split]
+        left_child_mask = self.samples_x[opt_feature] <= opt_split
+        right_child_mask = self.samples_x[opt_feature] > opt_split
         
-        self.children = [Node(self.criterion, self.depth + 1, self.output_type), Node(self.criterion, self.depth + 1, self.output_type)]
+        self.children = [Node(self.criterion, self.depth + 1), Node(self.criterion, self.depth + 1)]
         
         self.children[0].add_samples(self.samples_x[left_child_mask], self.samples_y[left_child_mask])
         self.children[1].add_samples(self.samples_x[right_child_mask], self.samples_y[right_child_mask])
@@ -83,12 +86,13 @@ class Node:
     
     def predict(self, X: pd.DataFrame):
         if len(self.children) == 0:
-            # check if it is real output or discrete output
-            if self.output_type == 'discrete':
-                pass
+            if not check_ifreal(self.samples_y):
+                return np.ones(X.shape[0]) * self.samples_y.mode()[0]
             else:
-                pass
+                return np.ones(X.shape[0]) * self.samples_y.mean()
             
+        return np.concat([self.children[0].predict(X[X[self.split_feature] <= self.split_value]), 
+                         self.children[1].predict(X[X[self.split_feature] > self.split_value])])
         
 
 @dataclass
@@ -98,7 +102,7 @@ class DecisionTree:
     root: Node
     eps: float
 
-    def __init__(self, criterion, max_depth=5, eps=1e-3):
+    def __init__(self, criterion, max_depth=5, eps=1e-7):
         self.criterion = criterion
         self.max_depth = max_depth
         self.root = Node(criterion, 0)
@@ -119,10 +123,9 @@ class DecisionTree:
         """
         Funtion to run the decision tree on test inputs
         """
-
+        X = one_hot_encoding(X)
         # Traverse the tree you constructed to return the predicted values for the given test inputs.
-
-        pass
+        return pd.Series(self.root.predict(X))
 
     def plot(self) -> None:
         """

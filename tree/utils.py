@@ -25,6 +25,7 @@ def entropy(Y: pd.Series) -> float:
     Function to calculate the entropy
     """
     p = Y.value_counts(normalize=True)
+    p[p == 0.0] = 1.0
     S = -np.sum(p * np.log2(p))
     return S
 
@@ -44,14 +45,14 @@ def mse(Y: pd.Series) -> float:
 
 def get_impurity_function(criterion):
     fn = None
-    if criterion == 'entropy':
+    if criterion == 'information_gain':
         fn = entropy
-    elif criterion == 'gini':
+    elif criterion == 'gini_index':
         fn = gini_index
     elif criterion == 'mse':
         fn = mse
     else:
-        raise NotImplementedError("Criterion must be 'entropy', 'gini', or 'mse'")
+        raise NotImplementedError("Criterion must be 'information_gain', 'gini_index', or 'mse'")
     return fn
 
 def information_gain(Y: pd.Series, attr: pd.Series, criterion: str) -> float:
@@ -60,17 +61,18 @@ def information_gain(Y: pd.Series, attr: pd.Series, criterion: str) -> float:
     This will return the optimal split and the information gain for the given attr
     """
     fn = None
-    if criterion == 'entropy':
+    if criterion == 'information_gain':
         fn = entropy
-    elif criterion == 'gini':
+    elif criterion == 'gini_index':
         fn = gini_index
     elif criterion == 'mse':
         fn = mse
     else:
-        raise NotImplementedError("Criterion must be 'entropy', 'gini', or 'mse'")
+        raise NotImplementedError("Criterion must be 'information_gain', 'gini_index', or 'mse'")
     
     prev_info = fn(Y)
-    attr_values = attr.unique().sort()
+    attr_values = attr.unique()
+    attr_values.sort()
     best_gain = 0
     opt_split = None
     
@@ -79,13 +81,11 @@ def information_gain(Y: pd.Series, attr: pd.Series, criterion: str) -> float:
         right = Y[attr > value]
         current_info = fn(left) * len(left) / len(Y) + fn(right) * len(right) / len(Y)
         info_gain = prev_info - current_info
-        
         if info_gain > best_gain:
             best_gain = info_gain
             opt_split = value
     
-    assert opt_split is not None
-    
+    assert (opt_split is not None or best_gain == 0)    
     return best_gain, opt_split
 
 
@@ -110,7 +110,7 @@ def opt_split_attribute(X: pd.DataFrame, y: pd.Series, criterion, features: pd.S
             best_information_gain = current_information_gain
             best_attr = feature
 
-    return best_attr
+    return best_attr, best_information_gain
 
 
 def split_data(X: pd.DataFrame, y: pd.Series, attribute, value):
