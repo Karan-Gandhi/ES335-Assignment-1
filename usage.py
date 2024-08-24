@@ -23,7 +23,7 @@ X = pd.DataFrame(np.random.randn(N, P))
 y = pd.Series(np.random.randn(N))
 
 
-for criteria in ["information_gain", "gini_index"]:
+for criteria in ["information_gain", "gini_index", "mse"]:
 # for criteria in ["mse"]:
     tree = DecisionTree(criterion=criteria)  # Split based on Inf. Gain
     tree.fit(X, y)

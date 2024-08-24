@@ -84,15 +84,33 @@ class Node:
         self.samples_x = samples_x
         self.samples_y = samples_y
     
+    def get_value(self):
+        if not check_ifreal(self.samples_y):
+            return self.samples_y.mode()[0]
+        else:
+            return self.samples_y.mean()
+    
     def predict(self, X: pd.DataFrame):
         if len(self.children) == 0:
-            if not check_ifreal(self.samples_y):
-                return np.ones(X.shape[0]) * self.samples_y.mode()[0]
-            else:
-                return np.ones(X.shape[0]) * self.samples_y.mean()
+            return np.ones(X.shape[0]) * self.get_value()
             
         return np.concat([self.children[0].predict(X[X[self.split_feature] <= self.split_value]), 
                          self.children[1].predict(X[X[self.split_feature] > self.split_value])])
+        
+    def plot(self):
+        if len(self.children) == 0:
+            if not check_ifreal(self.samples_y):
+                # pass
+                print(f"Class {str(self.get_value())}")
+            else:
+                print(f"Value {str(self.get_value())}")
+                # pass
+        else:
+            print(f"?{self.split_feature} <= {self.split_value}")
+            print(("  " * (2 * self.depth + 1)) + "Y: ", end='')
+            self.children[0].plot()
+            print(("  " * (2 * self.depth + 1)) + "N: ", end='')
+            self.children[1].plot()
         
 
 @dataclass
@@ -139,4 +157,4 @@ class DecisionTree:
             N: Class C
         Where Y => Yes and N => No
         """
-        pass
+        self.root.plot()
