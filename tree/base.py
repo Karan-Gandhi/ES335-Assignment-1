@@ -102,11 +102,9 @@ class Node:
     def plot(self):
         if len(self.children) == 0:
             if not check_ifreal(self.samples_y):
-                # pass
                 print(f"Class {str(self.get_value())}, {self.samples_y.to_numpy()}")
             else:
                 print(f"Value {str(self.get_value())}, {self.samples_y.to_numpy()}")
-                # pass
         else:
             print(f"?{self.split_feature} <= {self.split_value}")
             print(("  " * (2 * self.depth + 1)) + "Y: ", end='')
