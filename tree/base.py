@@ -39,7 +39,6 @@ class Node:
         assert (self.samples_x is not None) and (self.samples_y is not None)
 
         if self.depth == max_depth:
-            # print(self.samples_x)
             return
         
         if get_impurity_function(self.criterion)(self.samples_y) <= eps:
@@ -94,17 +93,18 @@ class Node:
         if len(self.children) == 0:
             return np.ones(X.shape[0]) * self.get_value()
             
-        return np.concat([self.children[0].predict(X[X[self.split_feature] <= self.split_value]), 
-                         self.children[1].predict(X[X[self.split_feature] > self.split_value])])
+        
+        res = np.zeros(X.shape[0])
+        res[X[self.split_feature] <= self.split_value] = self.children[0].predict(X[X[self.split_feature] <= self.split_value])
+        res[X[self.split_feature] > self.split_value] = self.children[1].predict(X[X[self.split_feature] > self.split_value])
+        return res
         
     def plot(self):
         if len(self.children) == 0:
             if not check_ifreal(self.samples_y):
-                # pass
-                print(f"Class {str(self.get_value())}")
+                print(f"Class {str(self.get_value())}, {self.samples_y.to_numpy()}")
             else:
-                print(f"Value {str(self.get_value())}")
-                # pass
+                print(f"Value {str(self.get_value())}, {self.samples_y.to_numpy()}")
         else:
             print(f"?{self.split_feature} <= {self.split_value}")
             print(("  " * (2 * self.depth + 1)) + "Y: ", end='')
