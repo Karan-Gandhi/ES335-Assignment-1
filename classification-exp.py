@@ -21,15 +21,14 @@ def print_report(y, y_pred):
 def prepare_dataset():
     total_size = len(X)
     train_size = int(total_size * 0.7)
-    test_size = total_size - train_size
 
     X_train = pd.DataFrame(X[:train_size])
     y_train = pd.Series(y[:train_size])
     X_test = pd.DataFrame(X[train_size:])
     y_test = pd.Series(y[train_size:])
+
     return X_train, y_train, X_test, y_test
 
-X_train, y_train, X_test, y_test = prepare_dataset()
 
 # For plotting
 scatter = plt.scatter(X[:, 0], X[:, 1], c=y)
@@ -41,13 +40,13 @@ plt.show()
 
 # Write the code for Q2 a) and b) below. Show your results.
 # Q2a
-def evaluate_tree(X_train, y_train, X_test, y_test):
+def evaluate_tree():
+    X_train, y_train, X_test, y_test = prepare_dataset()
     tree = DecisionTree(criterion='information_gain')
     tree.fit(X_train, y_train)
     y_pred = tree.predict(X_test)
     print_report(y_test, y_pred)
 
-evaluate_tree(X_train, y_train, X_test, y_test)
 
 # Q2b
 # Use 5 fold cross-validation on the dataset. Using nested cross-validation find the optimum depth of the tree. [1 mark] Implement cross-validation from scratch.
@@ -97,7 +96,7 @@ def evaluate_k_fold_nested_cross_validation(X, y, n_folds, depths):
     print(f"Mean Accuracy accross {n_folds} folds: ", acc)
     print("Depths: ", depths)
 
-evaluate_k_fold_nested_cross_validation(X_train, y_train, 5, [1, 2, 3, 4, 5, 6, 7, 8])
+evaluate_k_fold_nested_cross_validation(pd.DataFrame(X), pd.Series(y), 5, [1, 2, 3, 4, 5, 6, 7, 8])
 """ Assume this works
 Accuracy:  0.9
 Class:  0
