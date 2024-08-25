@@ -2,7 +2,7 @@ import os
 import numpy as np
 import pandas as pd
 
-filepath = os.path.join('Datasets', 'UCI HAR Dataset')
+filepath = os.path.join(os.path.abspath('..'), 'Datasets', 'UCI HAR Dataset')
 f = open(os.path.join(filepath, 'features.txt'), 'r')
 lines = f.readlines()
 f.close()
