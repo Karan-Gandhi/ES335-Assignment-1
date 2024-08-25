@@ -91,10 +91,9 @@ class Node:
     
     def predict(self, X: pd.DataFrame):
         if len(self.children) == 0:
-            return np.ones(X.shape[0]) * self.get_value()
-            
+            return np.array(np.ones(X.shape[0]) * self.get_value(), dtype=self.samples_y.dtype)
         
-        res = np.zeros(X.shape[0])
+        res = np.zeros(X.shape[0], dtype=self.samples_y.dtype)
         res[X[self.split_feature] <= self.split_value] = self.children[0].predict(X[X[self.split_feature] <= self.split_value])
         res[X[self.split_feature] > self.split_value] = self.children[1].predict(X[X[self.split_feature] > self.split_value])
         return res
@@ -143,7 +142,7 @@ class DecisionTree:
         """
         X = one_hot_encoding(X)
         # Traverse the tree you constructed to return the predicted values for the given test inputs.
-        return pd.Series(self.root.predict(X))
+        return pd.Series(self.root.predict(X), dtype=self.root.samples_y.dtype)
 
     def plot(self) -> None:
         """
