@@ -14,8 +14,8 @@ num_average_time = 100  # Number of times to run each experiment to calculate th
 
 # Function to create fake data (take inspiration from usage.py)
 # Real input real output
-N_values = [1, 5, 10, 30, 60]
-M_values = [1, 5, 10, 15, 20]
+N_values = [10, 30, 50, 70, 100]
+M_values = [5, 10, 15, 20, 25]
 
 def get_data(type, N, M):
     np.random.seed(42)
@@ -53,30 +53,47 @@ def get_time_real_input_real_output(N, M, type):
         tree.predict(X)
         end = time.process_time()
         testing_times.append(end - start)
+    
+    print(f"For N={N}, M={M} Average training time: {np.mean(training_times)}" + f" Average testing time: {np.mean(testing_times)}")
+    
+    return np.mean(training_times), np.mean(testing_times), np.std(training_times), np.std(testing_times)
 
-    return np.mean(training_times), np.mean(testing_times)
-
-def plot_twin_axis_graph(x, y1, y2, title, xlabel):
-    fig, ax1 = plt.subplots()
+def plot_twin_axis_graph(x, y1, y2, y1_std, y2_std, title, xlabel):
+    fig, ax1 = plt.subplots(figsize=(10, 6))
 
     color = 'tab:red'
-    ax1.set_title(title)
+    ax1.set_title(title + " Training")
     ax1.set_ylabel('time')
     ax1.set_xlabel(xlabel, color=color)
     ax1.plot(x, y1, color=color)
+    ax1.errorbar(x, y1, yerr=y1_std, fmt='o', color=color)
     ax1.tick_params(axis='y', labelcolor=color)
+    ax1.legend(["Training Time", "Training time $\pm$ 1$\sigma$"]) 
+    fig.savefig("time_complexity_plots/" + title + " Training" + ".png")
 
-    ax2 = ax1.twinx()  # instantiate a second Axes that shares the same x-axis
-
+    fig, ax1 = plt.subplots(figsize=(10, 6))
     color = 'tab:blue'
-    ax2.set_ylabel('time', color=color)  # we already handled the x-label with ax1
-    ax2.plot(x, y2, color=color)
-    ax2.tick_params(axis='y', labelcolor=color)
+    ax1.set_title(title + " Testing")
+    ax1.set_ylabel('time')
+    ax1.set_xlabel(xlabel, color=color)
+    ax1.plot(x, y2, color=color)
+    ax1.errorbar(x, y2, yerr=y2_std, fmt='o', color=color)
+    ax1.tick_params(axis='y', labelcolor=color)
+    ax1.legend(["Testing Time", "Testing time $\pm$ 1$\sigma$"]) 
+    fig.savefig("time_complexity_plots/" + title + " Testing" + ".png")
 
-    fig.tight_layout()  # otherwise the right y-label is slightly clipped
-    fig.legend(["Training Time", "Testing Time"])
-    # fig.show()
-    fig.savefig("time_complexity_plots/" + title + ".png")
+    # ax2 = ax1.twinx()
+
+    # color = 'tab:blue'
+    # ax2.set_ylabel('time', color=color)
+    # ax2.plot(x, y2, color=color)
+    # ax2.errorbar(x, y2, yerr=y2_std, fmt='o', color=color)
+    # ax2.tick_params(axis='y', labelcolor=color)
+
+    # ax1.legend(["Training Time", "Training time $\pm$ 1$\sigma$"], loc='upper left') 
+    # ax2.legend(["Testing Time", "Testing time $\pm$ 1$\sigma$"], loc='upper right')
+    
+    # fig.savefig("time_complexity_plots/" + title + ".png")
 
 
 def plot_graph(N_vals, M_vals, fn, type):
@@ -87,24 +104,32 @@ def plot_graph(N_vals, M_vals, fn, type):
 
     training_times = []
     testing_times = []
+    training_time_stds = []
+    testing_time_stds = []
 
     for i in N_vals:
-        training_time, testing_time = fn(i, 5, type)
+        training_time, testing_time, training_time_std, testing_time_std = fn(i, 5, type)
         training_times.append(training_time)
         testing_times.append(testing_time)
+        training_time_stds.append(training_time_std)
+        testing_time_stds.append(testing_time_std)
         
     # Plot the graph in twin axis
-    plot_twin_axis_graph(N_vals, training_times, testing_times, type + " wrt N", 'N')
+    plot_twin_axis_graph(N_vals, training_times, testing_times, training_time_stds, testing_time_stds, type + " wrt N", 'N')
 
     training_times = []
     testing_times = []
+    testing_time_stds = []
+    training_time_stds = []
     
     for i in M_vals:
-        training_time, testing_time = fn(20, i, type)
+        training_time, testing_time, training_time_std, testing_time_std = fn(20, i, type)
         training_times.append(training_time)
         testing_times.append(testing_time)
+        training_time_stds.append(training_time_std)
+        testing_time_stds.append(testing_time_std)
         
-    plot_twin_axis_graph(M_vals, training_times, testing_times, type + " wrt M", 'M')
+    plot_twin_axis_graph(M_vals, training_times, testing_times, training_time_stds, testing_time_stds, type + " wrt M", 'M')
     
 plot_graph(N_values, M_values, get_time_real_input_real_output, "real_input_real_output")
 plot_graph(N_values, M_values, get_time_real_input_real_output, "real_input_discrete_output")
