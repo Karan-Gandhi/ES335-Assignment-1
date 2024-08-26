@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 # Define the base filepath for the dataset
-filepath = os.path.join('Datasets', 'UCI HAR Dataset')
+filepath = os.path.join(os.path.abspath('..'), 'Datasets', 'UCI HAR Dataset')
 
 # Load feature names from 'features.txt'
 with open(os.path.join(filepath, 'features.txt'), 'r') as f:
