@@ -15,7 +15,7 @@ num_average_time = 100  # Number of times to run each experiment to calculate th
 # Function to create fake data (take inspiration from usage.py)
 # Real input real output
 N_max = [1, 5, 10, 30, 60]
-M_max = [1, 5, 10, 20]
+M_max = [1, 5, 10, 15, 20]
 
 def get_data(type, N, M):
     np.random.seed(42)
