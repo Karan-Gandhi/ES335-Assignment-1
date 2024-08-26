@@ -7,7 +7,7 @@ from metrics import *
 from tqdm import tqdm
 
 np.random.seed(42)
-num_average_time = 100  # Number of times to run each experiment to calculate the average values
+num_average_time = 5  # Number of times to run each experiment to calculate the average values
 
 # Train time should be O(N * (2 ^ d) * M)
 # Testing time should be O(d * N)
@@ -39,12 +39,12 @@ def get_data(type, N, M):
     else:
         raise ValueError("Invalid type")
 
-def get_time_real_input_real_output(N, M, type):
+def get_decision_tree_time(N, M, type):
     X, y = get_data(type, N, M)
     training_times = []
     testing_times = []
     for _ in tqdm(range(num_average_time)):
-        tree = DecisionTree(criterion='information_gain')
+        tree = DecisionTree(criterion='information_gain', max_depth=10)
         start = time.process_time()
         tree.fit(X, y)
         end = time.process_time()
@@ -131,10 +131,10 @@ def plot_graph(N_vals, M_vals, fn, type):
         
     plot_twin_axis_graph(M_vals, training_times, testing_times, training_time_stds, testing_time_stds, type + " wrt M", 'M')
     
-plot_graph(N_values, M_values, get_time_real_input_real_output, "real_input_real_output")
-plot_graph(N_values, M_values, get_time_real_input_real_output, "real_input_discrete_output")
-plot_graph(N_values, M_values, get_time_real_input_real_output, "discrete_input_real_output")
-plot_graph(N_values, M_values, get_time_real_input_real_output, "discrete_input_discrete_output")
+plot_graph(N_values, M_values, get_decision_tree_time, "real_input_real_output")
+# plot_graph(N_values, M_values, get_decision_tree_time, "real_input_discrete_output")
+# plot_graph(N_values, M_values, get_decision_tree_time, "discrete_input_real_output")
+# plot_graph(N_values, M_values, get_decision_tree_time, "discrete_input_discrete_output")
 # ...
 # Function to calculate average time (and std) taken by fit() and predict() for different N and P for 4 different cases of DTs
 # ...
