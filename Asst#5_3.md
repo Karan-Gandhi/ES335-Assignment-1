@@ -13,6 +13,6 @@ Note: We have kept the depth to be constant for both the Skit-learn and Scratch 
 
 Below we have shown the plot of the accuracy vs depth of both the trees:
 
-![Dataset](task5/rmse_vs_depth.png)
+![Dataset](./Asst5_plots/rmse_vs_depth.png)
 
 As you can see that our model performs close to the Sklearn model.

@@ -4,3 +4,5 @@ venv
 __MACOSX
 /__pycache__
 .env
+/time_complexity_plots bad std
+/time_complexity_plots_without std
