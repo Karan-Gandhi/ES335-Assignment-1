@@ -39,7 +39,7 @@ Running the decision tree on the dataset, we get the following results:
     </table>
 </center>
 
-The depth of the decision tree was taken to be 5.
+The max depth of the decision tree was taken to be 5.
 
 For the second part we do 5-fold nested cross-validation to find the best depth for the decision tree. After running the cross-validation, we get the following results:
 
