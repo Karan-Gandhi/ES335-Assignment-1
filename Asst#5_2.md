@@ -4,7 +4,7 @@ In this questions, we were asked to run our implementation of the decision tree 
 
 The plot of the given dataset looks like this:
 
-![Dataset](task5/dataset.png)
+![Dataset](Asst#5_plots/dataset.png)
 
 Running the decision tree on the dataset, we get the following results:
 
