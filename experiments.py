@@ -7,7 +7,7 @@ from metrics import *
 from tqdm import tqdm
 
 np.random.seed(42)
-num_average_time = 5  # Number of times to run each experiment to calculate the average values
+num_average_time = 100 # Number of times to run each experiment to calculate the average values
 
 # Train time should be O(N * (2 ^ d) * M)
 # Testing time should be O(d * N)
@@ -82,19 +82,6 @@ def plot_twin_axis_graph(x, y1, y2, y1_std, y2_std, title, xlabel):
     ax1.legend(["Testing Time", "Testing time $\pm$ 1$\sigma$"]) 
     fig.savefig("time_complexity_plots/" + title + " Testing" + ".png")
 
-    # ax2 = ax1.twinx()
-
-    # color = 'tab:blue'
-    # ax2.set_ylabel('time', color=color)
-    # ax2.plot(x, y2, color=color)
-    # ax2.errorbar(x, y2, yerr=y2_std, fmt='o', color=color)
-    # ax2.tick_params(axis='y', labelcolor=color)
-
-    # ax1.legend(["Training Time", "Training time $\pm$ 1$\sigma$"], loc='upper left') 
-    # ax2.legend(["Testing Time", "Testing time $\pm$ 1$\sigma$"], loc='upper right')
-    
-    # fig.savefig("time_complexity_plots/" + title + ".png")
-
 
 def plot_graph(N_vals, M_vals, fn, type):
     print("Plotting graph for", type)
@@ -132,9 +119,9 @@ def plot_graph(N_vals, M_vals, fn, type):
     plot_twin_axis_graph(M_vals, training_times, testing_times, training_time_stds, testing_time_stds, type + " wrt M", 'M')
     
 plot_graph(N_values, M_values, get_decision_tree_time, "real_input_real_output")
-# plot_graph(N_values, M_values, get_decision_tree_time, "real_input_discrete_output")
-# plot_graph(N_values, M_values, get_decision_tree_time, "discrete_input_real_output")
-# plot_graph(N_values, M_values, get_decision_tree_time, "discrete_input_discrete_output")
+plot_graph(N_values, M_values, get_decision_tree_time, "real_input_discrete_output")
+plot_graph(N_values, M_values, get_decision_tree_time, "discrete_input_real_output")
+plot_graph(N_values, M_values, get_decision_tree_time, "discrete_input_discrete_output")
 # ...
 # Function to calculate average time (and std) taken by fit() and predict() for different N and P for 4 different cases of DTs
 # ...
