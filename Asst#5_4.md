@@ -12,10 +12,38 @@ The time complexity for training the decision tree is $O(N \cdot M \cdot 2^d)$ w
 ![Plot](Asst5_time_complexity_plots/real_input_real_output%20wrt%20N%20Testing.png)
 ![Plot](Asst5_time_complexity_plots/real_input_real_output%20wrt%20M%20Testing.png)
 
-The time complexity for predicting for test data is $O(N \cdot d)$ where $d$ is the max-depth of the tree and N is the number of testing samples. We follow the same procedure as above and get the above plots. Both of the plots agree with the theoretical time complexity.
+The time complexity for predicting for test data is $O(N \cdot d)$ where $d$ is the max-depth of the tree and N is the number of testing samples. We follow the same procedure as above and get the above plots. Both of the plots agree with the theoretical time complexity. The plots are linear with respect to N and constant with respect to M.
 
 **Note that for some plots we don't get a perfectly linear fit, like the plot shown below for descrete input descrete output this is because of the variation of the number of nodes of the tree (the number of nodes is not exactly $2^d$) and also because of the inconsistencies with the machine on which we are running it (background processes and cpu throttle because of heat). However we get a roughly linear trend.**
 
 ![Plot](Asst5_time_complexity_plots/discrete_input_discrete_output%20wrt%20M%20Training.png)
 
-**If you want to see all the plots, you can see them in the `Asst5_time_complexity_plots_folder`**
+## Real Input Real Output
+
+![Plot](Asst5_time_complexity_plots/real_input_real_output%20wrt%20N%20Training.png)
+![Plot](Asst5_time_complexity_plots/real_input_real_output%20wrt%20M%20Training.png)
+![Plot](Asst5_time_complexity_plots/real_input_real_output%20wrt%20N%20Testing.png)
+![Plot](Asst5_time_complexity_plots/real_input_real_output%20wrt%20M%20Testing.png)
+
+## Real Input Discrete Output
+
+![Plot](Asst5_time_complexity_plots/real_input_discrete_output%20wrt%20N%20Training.png)
+![Plot](Asst5_time_complexity_plots/real_input_discrete_output%20wrt%20M%20Training.png)
+![Plot](Asst5_time_complexity_plots/real_input_discrete_output%20wrt%20N%20Testing.png)
+![Plot](Asst5_time_complexity_plots/real_input_discrete_output%20wrt%20M%20Testing.png)
+
+## Discrete Input Real Output
+
+![Plot](Asst5_time_complexity_plots/discrete_input_real_output%20wrt%20N%20Training.png)
+![Plot](Asst5_time_complexity_plots/discrete_input_real_output%20wrt%20M%20Training.png)
+![Plot](Asst5_time_complexity_plots/discrete_input_real_output%20wrt%20N%20Testing.png)
+![Plot](Asst5_time_complexity_plots/discrete_input_real_output%20wrt%20M%20Testing.png)
+
+## Discrete Input Discrete Output
+
+![Plot](Asst5_time_complexity_plots/discrete_input_discrete_output%20wrt%20N%20Training.png)
+![Plot](Asst5_time_complexity_plots/discrete_input_discrete_output%20wrt%20M%20Training.png)
+![Plot](Asst5_time_complexity_plots/discrete_input_discrete_output%20wrt%20N%20Testing.png)
+![Plot](Asst5_time_complexity_plots/discrete_input_discrete_output%20wrt%20M%20Testing.png)
+
+As you can see in all the training plots, there is a roughly linear trend and in all the testing plots there is a linear trend with respect to N and constant with respect to M.
