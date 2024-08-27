@@ -5,28 +5,28 @@
 ## Solutions:
 
 1. Task 1:
-   - [Task 1 EDA](./Asst#1.ipynb)
-   - [Code to generate features](./Asst#1_generate-features.py)
-   - [Code to preprocess TSFE features](./Asst#1_preprocess_tsfel_dataset.ipynb)
-   - [Code to extract UCI HAR features](./MakeHARdataset.py)
+   - [Task 1 EDA `./Asst#1.ipynb`](./Asst#1.ipynb)
+   - [Code to generate features `./Asst#1_generate-features.py`](./Asst#1_generate-features.py)
+   - [Code to preprocess TSFE features `./Asst#1_preprocess_tsfel_dataset.ipynb`](./Asst#1_preprocess_tsfel_dataset.ipynb)
+   - [Code to extract UCI HAR features `./MakeHARdataset.py`](./MakeHARdataset.py)
 2. Task 2:
-   - [Task 2 Decision Trees](./Asst#2.ipynb)
-   - [Task 2 Decision Trees K-Fold Results for hyperparameter tuning (Extra)](./Asst#2_nested_cv_results.csv)
+   - [Task 2 Decision Trees `./Asst#2.ipynb`](./Asst#2.ipynb)
+   - [Task 2 Decision Trees K-Fold Results for hyperparameter tuning (Extra) `./Asst#2_nested_cv_results.csv`](./Asst#2_nested_cv_results.csv)
 3. Task 3:
-   - [Task 3 Zero-Shot and Few-Shot Learning](./HAR/ZeroShot_FewShot.ipynb)
+   - [Task 3 Zero-Shot and Few-Shot Learning `./HAR/ZeroShot_FewShot.ipynb`](./HAR/ZeroShot_FewShot.ipynb)
 4. Task 4:
-   - [Task 4 Data Collection in the Wild Datasets](./Datasets/task4_datacollection/)
+   - [Task 4 Data Collection in the Wild Datasets `./Datasets/task4_datacollection/`](./Datasets/task4_datacollection/)
    - Task 4 Data collection results.
 5. Task 5:
-   - [Decision Tree Implementation Code](./tree/base.py)
-   - [Decision Tree Metrics Code](./tree/metrics.py)
-   - [Classification Experiments Results](./Asst#5_2.md)
-   - [Auto Efficiency Experiments Results](./Asst#5_3.md)
-   - [Time Complexity Experiments Results](./Asst#5_4.md)
-   - [Classification Experiments Code](./tree/classification-exp.py)
-   - [Auto Efficiency Experiments Code](./tree/auto-efficiency.py)
-   - [Time Complexity Experiments Code](./tree/experiments.py)
-   - [Time Complexity Plots](./Asst5_time_complexity_plots/)
+   - [Decision Tree Implementation Code `./tree/base.py`](./tree/base.py)
+   - [Decision Tree Metrics Code `./tree/metrics.py`](./tree/metrics.py)
+   - [Classification Experiments Results `./Asst#5_2.md`](./Asst#5_2.md)
+   - [Auto Efficiency Experiments Results `./Asst#5_3.md`](./Asst#5_3.md)
+   - [Time Complexity Experiments Results `./Asst#5_4.md`](./Asst#5_4.md)
+   - [Classification Experiments Code `./tree/classification-exp.py`](./tree/classification-exp.py)
+   - [Auto Efficiency Experiments Code `./tree/auto-efficiency.py`](./tree/auto-efficiency.py)
+   - [Time Complexity Experiments Code `./tree/experiments.py`](./tree/experiments.py)
+   - [Time Complexity Plots `./Asst5_time_complexity_plots/`](./Asst5_time_complexity_plots/)
 
 # Human Activity Recognition (HAR)
 
