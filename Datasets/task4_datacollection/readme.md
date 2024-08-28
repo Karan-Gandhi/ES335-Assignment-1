@@ -25,13 +25,13 @@ Each activity directory contains CSV files representing accelerometer data for m
 
 - **Karan (K):**
   - **Walking:**
-    - Karan's four samples for the walking activity are mapped to `Subject_1`, `Subject_2`, `Subject_3`, and `Subject_4`.
+    - Karan's four samples for the walking activity are mapped to `Subject_5`, `Subject_6`, `Subject_7`, and `Subject_8`.
   - **Other Activities:**
     - The same mapping pattern is applied to other activities such as Laying, Sitting, Standing, Walking Downstairs, and Walking Upstairs.
 
 - **Yash (Y):**
   - **Walking:**
-    - Yash's four samples for the walking activity are mapped to `Subject_1`, `Subject_2`, `Subject_3`, and `Subject_4`.
+    - Yash's four samples for the walking activity are mapped to `Subject_9`, `Subject_10`, `Subject_11`, and `Subject_12`.
   - **Other Activities:**
     - The same mapping pattern is applied to other activities such as Laying, Sitting, Standing, Walking Downstairs, and Walking Upstairs.
 
