@@ -5,18 +5,18 @@
 ## Solutions:
 
 1. Task 1:
-   - [Task 1 EDA `./Asst#1.ipynb`](./Asst#1.ipynb)
+   - [EDA `./Asst#1.ipynb`](./Asst#1.ipynb)
    - [Code to generate features `./Asst#1_generate-features.py`](./Asst#1_generate-features.py)
    - [Code to preprocess TSFE features `./Asst#1_preprocess_tsfel_dataset.ipynb`](./Asst#1_preprocess_tsfel_dataset.ipynb)
    - [Code to extract UCI HAR features `./MakeHARdataset.py`](./MakeHARdataset.py)
 2. Task 2:
-   - [Task 2 Decision Trees `./Asst#2.ipynb`](./Asst#2.ipynb)
-   - [Task 2 Decision Trees K-Fold Results for hyperparameter tuning (Extra) `./Asst#2_nested_cv_results.csv`](./Asst#2_nested_cv_results.csv)
+   - [Decision Trees `./Asst#2.ipynb`](./Asst#2.ipynb)
+   - [Decision Trees K-Fold Results for hyperparameter tuning (Extra) `./Asst#2_nested_cv_results.csv`](./Asst#2_nested_cv_results.csv)
 3. Task 3:
-   - [Task 3 Zero-Shot and Few-Shot Learning `./HAR/ZeroShot_FewShot.ipynb`](./HAR/ZeroShot_FewShot.ipynb)
+   - [Zero-Shot and Few-Shot Learning `./HAR/ZeroShot_FewShot.ipynb`](./HAR/ZeroShot_FewShot.ipynb)
 4. Task 4:
-   - [Task 4 Data Collection in the Wild Datasets `./Datasets/task4_datacollection/`](./Datasets/task4_datacollection/)
-   - [PreProcessing Raw Code `./Datasets/task4_datacollection/Asst#4_process_raw.ipynb`](./Datasets/task4_datacollection/Asst#4_process_raw.ipynb)
+   - [Data Collection in the Wild Datasets `./Datasets/task4_datacollection/`](./Datasets/task4_datacollection/)
+   - [Pre-Processing Raw Code `./Datasets/task4_datacollection/Asst#4_process_raw.ipynb`](./Datasets/task4_datacollection/Asst#4_process_raw.ipynb)
    - Task 4 Data collection results.
 5. Task 5:
    - [Decision Tree Implementation Code `./tree/base.py`](./tree/base.py)
