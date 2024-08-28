@@ -18,12 +18,14 @@ Each activity directory contains CSV files representing accelerometer data for m
 ## Data Formatting
 
 - **Nishchay (N):**
+
   - **Walking:**
     - Nishchay's four samples for the walking activity are mapped to `Subject_1`, `Subject_2`, `Subject_3`, and `Subject_4`.
   - **Other Activities:**
     - The same mapping pattern is applied to other activities such as Laying, Sitting, Standing, Walking Downstairs, and Walking Upstairs.
 
 - **Karan (K):**
+
   - **Walking:**
     - Karan's four samples for the walking activity are mapped to `Subject_1`, `Subject_2`, `Subject_3`, and `Subject_4`.
   - **Other Activities:**
@@ -50,6 +52,7 @@ The first script organizes the CSV files into directories based on the activity 
 After organizing the data into directories and renaming the files, the next script simplifies the filenames by removing the suffixes:
 
 - **Renaming**: Within each activity directory, files named `Subject_1_1.csv`, `Subject_1_2.csv`, etc., are renamed to `Subject_1.csv`, `Subject_2.csv`, and so on. This is done to distinguish different samples for each subject.
+
 # Data Processing for Accelerometer Data
 
 This repository contains scripts used to process raw accelerometer data into a structured format suitable for analysis. The data processing involved downsampling, renaming columns, and rounding values to a specified precision.
@@ -58,7 +61,7 @@ This repository contains scripts used to process raw accelerometer data into a s
 
 The data is organized into the following directory structure:
 
-- **`raw/`**: Contains the original, unprocessed CSV files.
+- **`unprocessed/`**: Contains the original, unprocessed CSV files.
 - **`processed/`**: Contains the processed CSV files after downsampling and renaming.
 
 ## Processing Steps
@@ -76,7 +79,6 @@ After downsampling, the following column renaming was applied:
   - `gFx`: Represents the acceleration in the X-axis.
   - `gFy`: Represents the acceleration in the Y-axis.
   - `gFz`: Represents the acceleration in the Z-axis.
-  
 - **New Columns**:
   - `accx`: Represents the downsampled acceleration in the X-axis.
   - `accy`: Represents the downsampled acceleration in the Y-axis.

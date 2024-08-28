@@ -16,6 +16,7 @@
    - [Task 3 Zero-Shot and Few-Shot Learning `./HAR/ZeroShot_FewShot.ipynb`](./HAR/ZeroShot_FewShot.ipynb)
 4. Task 4:
    - [Task 4 Data Collection in the Wild Datasets `./Datasets/task4_datacollection/`](./Datasets/task4_datacollection/)
+   - [PreProcessing Raw Code `./Datasets/task4_datacollection/Asst#4_process_raw.ipynb`](./Datasets/task4_datacollection/Asst#4_process_raw.ipynb)
    - Task 4 Data collection results.
 5. Task 5:
    - [Decision Tree Implementation Code `./tree/base.py`](./tree/base.py)
