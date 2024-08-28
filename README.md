@@ -10,7 +10,7 @@
    - [Code to preprocess TSFE features `./Asst#1_preprocess_tsfel_dataset.ipynb`](./Asst#1_preprocess_tsfel_dataset.ipynb)
    - [Code to extract UCI HAR features `./MakeHARdataset.py`](./MakeHARdataset.py)
 2. Task 2:
-   - [Decision Trees `./Asst#2.ipynb`](./Asst#2.ipynb)
+   - [Decision Trees on 3 datasets `./Asst#2.ipynb`](./Asst#2.ipynb)
    - [Decision Trees K-Fold Results for hyperparameter tuning (Extra) `./Asst#2_nested_cv_results.csv`](./Asst#2_nested_cv_results.csv)
 3. Task 3:
    - [Zero-Shot and Few-Shot Learning `./HAR/ZeroShot_FewShot.ipynb`](./HAR/ZeroShot_FewShot.ipynb)
